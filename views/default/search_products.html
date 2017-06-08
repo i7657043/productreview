@@ -1,0 +1,31 @@
+{{left_sidebar_enabled=True}}
+{{extend 'layout.html'}}
+
+<div class="row text-center">
+    <div class="col-xs-12">
+        {{=search_form}}
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-xs-12">
+        <h2 class="page-header" style="margin-bottom:3%;">The products matching your search can be seen below</h2>
+    </div>
+</div>
+
+{{for row in results:}}
+    <div class="col-lg-3 col-md-6 text-center">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{=H5(P(A(row.name,_href=URL('selected_product',args=row.id))), '   £'+row.price, _id='prices')}}
+            </div>
+            <div class="panel-body">
+                {{=P(row.description)}}
+                {{=P(row.stock + " left")}}
+                {{=P(A(IMG(_class='prod_imgs', _alt='img here', _src=URL('download', args=row.image)), _href=URL('selected_product',args=row.id)))}}
+                <!--<a href="https://webteam.pythonanywhere.com/selected_product.html?id={{=row.id}}&name={{=row.name}}&price={{=row.price}}">{{=row.name}}</a>-->
+            </div>
+        </div>
+    </div>
+
+    {{pass}}

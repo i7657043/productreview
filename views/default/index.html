@@ -1,0 +1,35 @@
+{{left_sidebar_enabled=True}}
+{{extend 'layout.html'}}
+
+
+{{block center}}
+<h1>
+    Welcome {{=name}} to WebTeam's Product Review System Home Page
+</h1>
+{{end}}
+
+{{block left_sidebar}}
+            <h3>Site Navigation</h3>         
+            <ul id="sideText" class="nav navbar-left">
+        <li>{{=A('Search Products', _href=URL('search_products'))}}</li>
+        <li>{{=A('View all products', _href=URL('show_products'))}}</li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
+          <ul class="dropdown-menu">           
+              <li role="separator" class="divider"></li>       
+            <li>{{=A('Televisions', _href=URL('show_products', args='televisions'))}}</li>
+            <li>{{=A('Monitors', _href=URL('show_products', args='monitors'))}}</li>
+            <li role="separator" class="divider"></li>            
+            <li>{{=A('Consoles', _href=URL('show_products', args='consoles'))}}</li>            
+          </ul>
+        </li>
+        {{if auth.has_membership('managers'):}}
+            <li role="separator" class="divider"></li>
+            <li>{{=A('Manage Products', _href=URL('prod_management'))}}</li>
+                
+        <li role="separator" class="divider"></li>    
+            <li>{{=A('Manage Posts', _href=URL('post_management'))}}</li>
+        {{pass}}
+      </ul>
+
+{{end}}
